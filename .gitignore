@@ -1,0 +1,52 @@
+# Generic .gitignore for RCVS projects
+
+# Python caching
+__pycache__/
+
+# Mac file metadata
+.DS_Store
+
+# Python Poetry metadata
+*.egg-info/
+
+# React Native build metadata
+.expo/
+
+# Python import sorting config. Needed to autosort dotfiles
+.isort.cfg
+
+# Vender lockin editor config
+.vscode/
+
+# Code coverage data from Jest among others
+coverage
+
+# Django SCSS output
+css_temp/
+
+# Selenium testing data
+geckodriver.log
+
+# JavaScript dependencies
+node_modules/
+
+# Django SCSS output
+static_generated/
+
+# Pytest code coverage
+.coverage
+
+# Python testing
+.pytest_cache/
+
+# Django testing database
+db.sqlite3
+
+# Python package management
+pip-wheel-metadata
+
+# Type hinting
+.mypy_cache/
+
+# Files compiled by webpack
+js/

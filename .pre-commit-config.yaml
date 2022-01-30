@@ -1,0 +1,33 @@
+repos:
+    - repo: https://github.com/lovesegfault/beautysh
+      rev: v6.2.1
+      hooks:
+          - id: beautysh
+    - repo: https://github.com/ambv/black
+      rev: 22.1.0
+      hooks:
+          - id: black
+            language_version: python3.9
+    - repo: https://github.com/pre-commit/mirrors-isort
+      rev: v5.10.1
+      hooks:
+          - id: isort
+    - repo: https://github.com/asottile/seed-isort-config
+      rev: v2.2.0
+      hooks:
+          - id: seed-isort-config
+    - repo: https://github.com/pre-commit/mirrors-prettier
+      rev: v2.2.1
+      hooks:
+          - id: prettier
+    - repo: https://github.com/pre-commit/pre-commit-hooks
+      rev: v4.1.0
+      hooks:
+          - id: check-json
+          - id: check-merge-conflict
+          - id: check-symlinks
+            always_run: true
+          - id: check-yaml
+          - id: detect-private-key
+          - id: pretty-format-json
+            args: [--autofix, --indent=4]
