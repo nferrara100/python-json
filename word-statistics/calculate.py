@@ -12,7 +12,7 @@ def stats_for_file(file, word):
         matches = len(results)
         examples = []
         if matches > 0:
-            sentence_pattern = f"[^.]*\s{re.escape(word)}[^a-z][^.]*"
+            sentence_pattern = f"[^.]*\s{re.escape(word)}[^a-z.]*[^.]*"
             sentences = re.findall(sentence_pattern, lines, flags=re.IGNORECASE)
             for sentence in sentences:
                 examples.append(" ".join(sentence.split()) + ".")
