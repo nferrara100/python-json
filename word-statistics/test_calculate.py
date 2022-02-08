@@ -2,9 +2,22 @@ from calculate import get_stats
 
 
 def test_correct_count():
-    stats = get_stats("me")
-    assert stats["count"] == 35
-    assert len(stats["examples"]) == 35
+    stats = get_stats("reflects")
+    assert stats["count"] == 1
+    assert len(stats["examples"]) == 1
+
+
+def test_correct_count_2():
+    stats = get_stats("worst")
+    assert stats["count"] == 4
+    assert len(stats["examples"]) == 4
+    assert stats["in_documents"] == ["doc1.txt", "doc3.txt", "doc4.txt"]
+
+
+def test_correct_count_3():
+    stats = get_stats("that")
+    assert stats["count"] == 503
+    assert len(stats["examples"]) == 381
 
 
 def test_multiple_word_query():
