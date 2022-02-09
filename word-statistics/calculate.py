@@ -6,10 +6,11 @@ from files import get_file_paths
 
 # Get stats for this one file and this one query.
 def stats_for_file(file, query):
-    # Accepts a single word (escaped). It must be preceded by whitespace and can not be
-    # followed by another letter, but can be followed by punctuation. For example:
-    # Search for `me`: Me, myself, and I (match); Something (not a match).
-    pattern = f"(?<=\s)({re.escape(query)})(?![a-z])"
+    # Escape to avoid regex collisions
+    escaped_query_string = re.escape(query)
+    # Search for the query string. It must start and end with a word seperator. For
+    # example: Search for `me`: Me, myself, and I (match); Something (not a match).
+    pattern = r"(?<=\b)(" + escaped_query_string + r")(?=\b)"
     regex = re.compile(pattern, flags=re.IGNORECASE)
     with open(file) as f:
         # Read all lines into memory to make it easier to search. Does not work for very

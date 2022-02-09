@@ -30,7 +30,7 @@ def test_multiple_word_query():
 
 def test_simple_example_sentence():
     stats = get_query_stats("Thank")
-    assert "Thank you." in stats["examples"]
+    assert "[bold red]Thank[/bold red] you." in stats["examples"]
 
 
 def test_long_example_sentence():
@@ -58,5 +58,13 @@ def test_nonalphabetic_char():
     stats = get_query_stats("my family's")
     assert (
         "In many ways, then, [bold red]my family's[/bold red] life reflects some of the contradictions of Kenya, and indeed, the African continent as a whole."
+        in stats["examples"]
+    )
+
+
+def test_start_of_sentence():
+    stats = get_query_stats("Let me begin by saying thanks")
+    assert (
+        "[bold red]Let me begin by saying thanks[/bold red] to all you who've traveled, from far and wide, to brave the cold today."
         in stats["examples"]
     )
