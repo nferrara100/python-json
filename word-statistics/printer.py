@@ -9,11 +9,15 @@ def get_formatted_stats(stats, query):
     shown_examples = 3
     if num_examples < 3:
         shown_examples = num_examples
+    # format using the rich library's formatting style
+    key = f"[bold red]{query.capitalize()}[/bold red] ({stats['count']})"
+    locations = "\n".join(stats["locations"])
+    locations = f"[italic]{locations}[/italic]"
     examples = "\n\n".join(stats["examples"][:shown_examples])
-    # return as list instead of dict.
+    # return as tuple instead of dict.
     return (
-        f"[bold red]{query.capitalize()}[/bold red] ({stats['count']})",
-        "\n".join(stats["locations"]),
+        key,
+        locations,
         examples,
     )
 
