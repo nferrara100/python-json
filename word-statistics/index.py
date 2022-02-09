@@ -55,6 +55,7 @@ if __name__ == "__main__":
         amount = args.amount[0]
         min_length = args.min_length[0]
         phrases = get_common_words(args.source, amount, min_length)
+        # Give first time users a helpful prompt.
         console.print(
             f"Printing {amount} most common words at least {min_length} characters",
             "long. To specify particular phrases use [yellow]--phrases[/yellow].",
