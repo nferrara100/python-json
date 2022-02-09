@@ -28,15 +28,14 @@ Given more time, the following additional features could be implemented:
     searches for a new word.
 4.  Create a package that can be installed by a package manager so that the utility can
     be used anywhere easily from the command line and updates can be issued.
-5.  Run on multiple directories at the same time.
-6.  Customise the amount of example sentences shown with a command line argument.
-7.  The current implementation is not memory efficient on large files because it reads
+5.  Customise the amount of example sentences shown with a command line argument.
+6.  The current implementation is not memory efficient on large files because it reads
     the entire file into memory before parsing it. This could be improved, but would
     make the solution more complicated.
-8.  Outputting to a .txt file, a .rtf file to allow formatting such as bold words, or a
+7.  Outputting to a .txt file, a .rtf file to allow formatting such as bold words, or a
     webpage via HTML to allow interactive results.
-9.  Support searching file formats other than .txt.
-10. Support searching directories recursively.
-11. Support languages other than English, including alternative alphabets.
-12. Optimize example searching by not searching for more examples once the required
+8.  Support searching file formats other than .txt.
+9.  Support searching directories recursively.
+10. Support languages other than English, including alternative alphabets.
+11. Optimize example searching by not searching for more examples once the required
     number has been found.
