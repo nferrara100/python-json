@@ -38,6 +38,7 @@ def get_all_stats(queries, source):
         )
         # Add something to separate lines.
         results.append(["-", "-", "-"])
+    return results
 
 
 # Gets output from helper and prints to standard out.
