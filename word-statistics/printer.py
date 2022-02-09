@@ -11,7 +11,11 @@ def get_formatted_stats(stats, query):
         shown_examples = num_examples
     examples = "\n\n".join(stats["examples"][:shown_examples])
     # return as list instead of dict.
-    return (f"{query} ({stats['count']})", ", ".join(stats["locations"]), examples)
+    return (
+        f"[bold red]{query}[/bold red] ({stats['count']})",
+        ", ".join(stats["locations"]),
+        examples,
+    )
 
 
 # Gets output from helper and prints to standard out.

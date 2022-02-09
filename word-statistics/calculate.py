@@ -9,7 +9,7 @@ def stats_for_file(file, query):
     # Accepts a single word (escaped). It must be preceded by whitespace and can not be
     # followed by another letter, but can be followed by punctuation. For example:
     # Search for `me`: Me, myself, and I (match); Something (not a match).
-    pattern = f"(?<=\s){re.escape(query)}(?![a-z])"
+    pattern = f"(?<=\s)({re.escape(query)})(?![a-z])"
     regex = re.compile(pattern, flags=re.IGNORECASE)
     with open(file) as f:
         # Read all lines into memory to make it easier to search. Does not work for very
@@ -27,7 +27,11 @@ def stats_for_file(file, query):
             # examples list if a match.
             for sentence in sentences:
                 if regex.search(sentence):
-                    examples.append(" ".join(sentence.split()) + ".")
+                    formatted_sentence = " ".join(sentence.split()) + "."
+                    formatted_sentence = regex.sub(
+                        r"[bold red]\1[/bold red]", formatted_sentence
+                    )
+                    examples.append(formatted_sentence)
         return {"matches": matches, "examples": examples}
 
 
