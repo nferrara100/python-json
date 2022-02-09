@@ -1,3 +1,4 @@
+import string
 from collections import Counter
 
 from files import get_file_paths
@@ -17,7 +18,7 @@ def get_common_words(source=None, amount=10, min_length=7):
             words = lines.split()
             for word in words:
                 # Discard English punctuation and normalize in lowercase.
-                filtered_word = word.strip(".,!?'\";-").lower()
+                filtered_word = word.strip(string.punctuation).lower()
                 # Only include words that are at least the minimum size.
                 if len(filtered_word) >= min_length:
                     counter.update({filtered_word: 1})
