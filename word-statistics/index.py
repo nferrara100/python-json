@@ -15,7 +15,7 @@ def get_all_stats(queries, source):
     # Start with headers.
     results = [
         [
-            "Word or Phrase (Total Occurrences):",
+            "Word or Phrase\n(Total Occurrences):",
             "Documents:",
             "Sentences containing the word:",
         ],
