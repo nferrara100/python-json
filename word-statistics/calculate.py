@@ -42,19 +42,24 @@ def get_stats(query, source=None):
     # Loop through source if there are multiple source directories.
     for dir in source:
         abs_dir_path = os.path.join(script_dir, dir)
-        for filename in os.listdir(abs_dir_path):
-            # Don't examine files that are not text files so all data is the same.
-            if filename[4:] != ".txt":
-                continue
-            abs_filename = os.path.join(abs_dir_path, filename)
+        try:
+            for filename in os.listdir(abs_dir_path):
+                # Don't examine files that are not text files so all data is the same.
+                if filename[4:] != ".txt":
+                    continue
+                abs_filename = os.path.join(abs_dir_path, filename)
 
-            # Perform calculations on this file for this query.
-            stats = stats_for_file(abs_filename, query)
-            if stats["matches"] > 0:
-                # Increase the occurrence count by the number of matches found in the file.
-                count += stats["matches"]
-                # Unite the examples list from this file with all existing examples.
-                examples += stats["examples"]
-                # Record this file as being a match.
-                locations.append(filename)
+                # Perform calculations on this file for this query.
+                stats = stats_for_file(abs_filename, query)
+                if stats["matches"] > 0:
+                    # Increase the occurrence count by the number of matches found in the file.
+                    count += stats["matches"]
+                    # Unite the examples list from this file with all existing examples.
+                    examples += stats["examples"]
+                    # Record this file as being a match.
+                    locations.append(filename)
+        # Return a pretty error when a file is not found. Continue looking for other
+        # files.
+        except FileNotFoundError:
+            print(f"Error: {dir} does not exist.")
     return {"count": count, "locations": locations, "examples": examples}
