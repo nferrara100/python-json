@@ -19,7 +19,7 @@ def get_common_words(source=None, amount=10, min_length=7):
                 # Discard English punctuation and normalize in lowercase.
                 filtered_word = word.strip(".,!?'\";-").lower()
                 # Only include words that are at least the minimum size.
-                if len(filtered_word) > min_length:
+                if len(filtered_word) >= min_length:
                     counter.update({filtered_word: 1})
 
     most_common = counter.most_common(amount)
