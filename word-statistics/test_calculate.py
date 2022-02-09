@@ -20,7 +20,7 @@ def test_correct_count_2():
 def test_correct_count_3():
     stats = get_query_stats("that")
     assert stats["count"] == 503
-    assert len(stats["examples"]) == 381
+    assert len(stats["examples"]) == 387
 
 
 def test_multiple_word_query():

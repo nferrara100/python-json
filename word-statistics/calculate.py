@@ -18,8 +18,9 @@ def stats_for_file(file, query):
         examples = []
         # Don't bother searching for example sentences if there are no matches.
         if matches > 0:
-            # Split into sentences via periods. This does not cover all edge cases.
-            sentences = lines.split(".")
+            # Split into sentences via periods, question marks, and exclamation marks.
+            # This does not cover all edge cases.
+            sentences = re.split("[.?!]", lines)
             # Search every sentence for matching queries and append the sentence to the
             # examples list if a match.
             for sentence in sentences:
