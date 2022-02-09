@@ -28,6 +28,22 @@ if __name__ == "__main__":
         nargs="+",
         help="phrases to search for in the text if the most common are not desired",
     )
+    parser.add_argument(
+        "--amount",
+        "-a",
+        type=int,
+        nargs=1,
+        default=[10],
+        help="x most common words if not searching by phrase",
+    )
+    parser.add_argument(
+        "--min_length",
+        "-m",
+        type=int,
+        nargs=1,
+        default=[7],
+        help="minimum length of a word to be included",
+    )
     args = parser.parse_args()
 
     # When using rich we cannot print normally, so create our rich console here so we
@@ -36,9 +52,11 @@ if __name__ == "__main__":
     phrases = args.phrases
     # Provide default queries if none are provided.
     if phrases is None:
-        phrases = get_common_words(args.source)
+        amount = args.amount[0]
+        min_length = args.min_length[0]
+        phrases = get_common_words(args.source, amount, min_length)
         console.print(
-            "Printing most common long words. To specify particular words or phrases use the --phrase flag."
+            f"Printing {amount} most common words at least {min_length} characters long. To specify particular words or phrases use the --phrase flag."
         )
 
     print_stats(console, phrases, args.source)
