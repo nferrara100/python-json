@@ -1,10 +1,16 @@
-# Word stats command line utility
+# Text stats command line utility
+
+Example usage (on unix systems):
+
+```bash
+./index.py path/to/my/directory --words All the words and "phrases that I like"
+```
 
 This python command line utility accepts text files and outputs basic statistics on the
-frequency of a given word in them. It requires tabulate to format its output and Pytest
-to run the test suite. It is case insensitive and supports searching for phrases when
-quotation marks are used. By default it reads from the `example_data` directory, but
-supports any directory.
+frequency of a given word or phrase in them. It requires tabulate to format its output
+and Pytest to run the test suite. It is case insensitive and supports searching for
+phrases when quotation marks are used. By default it reads from the `example_data`
+directory, but supports any directory.
 
 Given more time, the following additional features could be implemented:
 
@@ -15,7 +21,8 @@ Given more time, the following additional features could be implemented:
     because of the additional periods. Intelligently catching acronyms like that would
     still be possible with complicated regex logic, but a far more readable and
     maintainable solution would be to use a third-party library.
-2.  Increase the size of the test suite to include more edge cases.
+2.  Increase the size of the test suite to include more edge cases and include the
+    command line entry point.
 3.  Search all words by default and rank them by order of frequency. The current
     implementation might have to be rewritten since reads the file again every time it
     searches for a new word.
@@ -30,3 +37,6 @@ Given more time, the following additional features could be implemented:
     webpage via HTML to allow interactive results.
 9.  Support searching file formats other than .txt.
 10. Support searching directories recursively.
+11. Support languages other than English, including alternative alphabets.
+12. Optimize example searching by not searching for more examples once the required
+    number has been found.

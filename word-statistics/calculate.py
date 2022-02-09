@@ -2,43 +2,55 @@ import os
 import re
 
 
+# Get stats for this one file and this one query.
 def stats_for_file(file, query):
+    # Accepts a single word (escaped). It must be preceded by whitespace and can not be
+    # followed by another letter, but can be followed by punctuation. For example:
+    # Search for `me`: Me, myself, and I (match); Something (not a match).
     pattern = f"(?<=\s){re.escape(query)}(?![a-z])"
     regex = re.compile(pattern, flags=re.IGNORECASE)
     with open(file) as f:
+        # Read all lines into memory to make it easier to search. Does not work for very
+        # large files.
         lines = f.read()
         results = regex.findall(lines)
         matches = len(results)
         examples = []
+        # Don't bother searching for example sentences if there are no matches.
         if matches > 0:
+            # Split into sentences via periods. This does not cover all edge cases.
             sentences = lines.split(".")
+            # Search every sentence for matching queries and append the sentence to the
+            # examples list if a match.
             for sentence in sentences:
                 if regex.search(sentence):
                     examples.append(" ".join(sentence.split()) + ".")
         return {"matches": matches, "examples": examples}
 
 
+# Start calculation for word or phrase here. Find all relevant files and then call
+# call helper for each. Then return data from the helper in a useful format.
 def get_stats(query, source="example_data/"):
     count = 0
     examples = []
-    in_documents = []
+    locations = []
+
+    # Find all the files in the source folder.
     script_dir = os.path.dirname(__file__)
     abs_source_path = os.path.join(script_dir, source)
     for filename in os.listdir(abs_source_path):
+        # Don't examine files that are not text files so all data is the same.
         if filename[4:] != ".txt":
             continue
         abs_filename = os.path.join(abs_source_path, filename)
+
+        # Perform calculations on this file for this query.
         stats = stats_for_file(abs_filename, query)
         if stats["matches"] > 0:
+            # Increase the occurrence count by the number of matches found in the file.
             count += stats["matches"]
+            # Unite the examples list from this file with all existing examples.
             examples += stats["examples"]
-            in_documents.append(filename)
-    return {"count": count, "in_documents": in_documents, "examples": examples}
-
-
-def get_all_stats(queries, source):
-    for query in queries:
-        stats = get_stats(query, source)
-        print(
-            f"Word or Phrase (Total Occurrences): {query}({stats['count']}), Documents: {stats['in_documents']}, Sentences containing the word: {stats['examples'][0]}"
-        )
+            # Record this file as being a match.
+            locations.append(filename)
+    return {"count": count, "locations": locations, "examples": examples}

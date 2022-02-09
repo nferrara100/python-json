@@ -1,5 +1,7 @@
 from calculate import get_stats
 
+# Pytest test suite for the calculations. All use example data.
+
 
 def test_correct_count():
     stats = get_stats("reflects")
@@ -11,8 +13,8 @@ def test_correct_count_2():
     stats = get_stats("worst")
     assert stats["count"] == 4
     assert len(stats["examples"]) == 4
-    assert len(stats["in_documents"]) == 3
-    assert "doc1.txt" in stats["in_documents"]
+    assert len(stats["locations"]) == 3
+    assert "doc1.txt" in stats["locations"]
 
 
 def test_correct_count_3():
@@ -23,7 +25,7 @@ def test_correct_count_3():
 
 def test_multiple_word_query():
     stats = get_stats("Old State Capitol")
-    assert stats["in_documents"] == ["doc1.txt"]
+    assert stats["locations"] == ["doc1.txt"]
 
 
 def test_simple_example_sentence():
