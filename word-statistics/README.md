@@ -1,8 +1,8 @@
 # Word stats command line utility
 
 This python command line utility accepts text files and outputs basic statistics on the
-frequency of a given word in them. It runs using only the Python standard library, but
-the test suite requires Pytest.
+frequency of a given word in them. It requires tabulate to format its output and Pytest
+to run the test suite.
 
 Given more time, the following additional features could be implemented:
 
@@ -24,3 +24,5 @@ Given more time, the following additional features could be implemented:
 7.  The current implementation is not memory efficient on large files because it reads
     the entire file into memory before parsing it. This could be improved, but would
     make the solution more complicated.
+8.  Outputting to a .txt file, a .rtf file to allow formatting such as bold words, or a
+    webpage via HTML to allow interactive results.
