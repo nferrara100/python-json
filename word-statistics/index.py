@@ -2,7 +2,7 @@
 
 # This is the entry file. Example usage (on unix systems):
 
-# ./index.py path/to/my/directory --words All the words and "phrases that I like"
+# ./index.py path/to/my/directory --phrases All the words and "phrases that I like"
 
 import argparse
 
@@ -12,7 +12,7 @@ from tabulate import tabulate
 
 # Returns two dimensional lists representing the grid of our desired output.
 def get_all_stats(queries, source):
-    # Start with headers
+    # Start with headers.
     results = [
         [
             "Word or Phrase (Total Occurrences):",
@@ -36,7 +36,7 @@ def get_all_stats(queries, source):
         results.append(
             [f"{query}({stats['count']})", ", ".join(stats["locations"]), examples]
         )
-        # Add something to separate lines
+        # Add something to separate lines.
         results.append(["-", "-", "-"])
 
 
@@ -62,13 +62,13 @@ if __name__ == "__main__":
         help="the relative name of the directory to examine",
     )
     parser.add_argument(
-        "--words",
-        "-w",
+        "--phrases",
+        "-p",
         type=str,
         nargs="+",
         required=True,
-        help="the comma separated words to analyse in the text",
+        help="the phrases to search for in the text",
     )
     args = parser.parse_args()
 
-    print_stats(args.words, args.source)
+    print_stats(args.phrases, args.source)

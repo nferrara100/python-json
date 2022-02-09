@@ -3,7 +3,7 @@
 Example usage (on unix systems):
 
 ```bash
-./index.py path/to/my/directory --words All the words and "phrases that I like"
+./index.py path/to/my/directory --phrase All the words and "phrases that I like"
 ```
 
 This python command line utility accepts text files and outputs basic statistics on the
