@@ -11,7 +11,7 @@ from printer import print_stats
 # Run this if not being imported. Accepts input from the command line and calls helper.
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="Glean interesting statistics from text."
+        description="Glean interesting statistics from text files in a given directory."
     )
     parser.add_argument(
         "source",
