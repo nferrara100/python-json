@@ -30,27 +30,31 @@ def stats_for_file(file, query):
 
 # Start calculation for word or phrase here. Find all relevant files and then call
 # call helper for each. Then return data from the helper in a useful format.
-def get_stats(query, source="example_data/"):
+def get_stats(query, source=None):
+    if source is None:
+        source = ["example_data/"]
     count = 0
     examples = []
     locations = []
 
     # Find all the files in the source folder.
     script_dir = os.path.dirname(__file__)
-    abs_source_path = os.path.join(script_dir, source)
-    for filename in os.listdir(abs_source_path):
-        # Don't examine files that are not text files so all data is the same.
-        if filename[4:] != ".txt":
-            continue
-        abs_filename = os.path.join(abs_source_path, filename)
+    # Loop through source if there are multiple source directories.
+    for dir in source:
+        abs_dir_path = os.path.join(script_dir, dir)
+        for filename in os.listdir(abs_dir_path):
+            # Don't examine files that are not text files so all data is the same.
+            if filename[4:] != ".txt":
+                continue
+            abs_filename = os.path.join(abs_dir_path, filename)
 
-        # Perform calculations on this file for this query.
-        stats = stats_for_file(abs_filename, query)
-        if stats["matches"] > 0:
-            # Increase the occurrence count by the number of matches found in the file.
-            count += stats["matches"]
-            # Unite the examples list from this file with all existing examples.
-            examples += stats["examples"]
-            # Record this file as being a match.
-            locations.append(filename)
+            # Perform calculations on this file for this query.
+            stats = stats_for_file(abs_filename, query)
+            if stats["matches"] > 0:
+                # Increase the occurrence count by the number of matches found in the file.
+                count += stats["matches"]
+                # Unite the examples list from this file with all existing examples.
+                examples += stats["examples"]
+                # Record this file as being a match.
+                locations.append(filename)
     return {"count": count, "locations": locations, "examples": examples}
