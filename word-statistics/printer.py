@@ -11,7 +11,8 @@ def get_formatted_stats(stats, query):
         shown_examples = num_examples
     # Format using the rich library's formatting style
     key = f"[bold red]{query.capitalize()}[/bold red] ({stats['count']})"
-    locations = "\n".join(stats["locations"])
+    locations = sorted(stats["locations"])
+    locations = "\n".join(locations)
     locations = f"[italic]{locations}[/italic]"
     examples = "\n\n".join(stats["examples"][:shown_examples])
     # Return as tuple instead of dict.
