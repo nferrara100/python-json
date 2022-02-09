@@ -18,7 +18,7 @@ def stats_for_file(file, query):
         return {"matches": matches, "examples": examples}
 
 
-def get_stats(query, source="data/"):
+def get_stats(query, source="example_data/"):
     count = 0
     examples = []
     in_documents = []

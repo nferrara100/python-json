@@ -43,7 +43,6 @@ if __name__ == "__main__":
         "source",
         type=str,
         nargs="*",
-        default="data/",
         help="the relative name of the directory to examine",
     )
     parser.add_argument(

@@ -3,7 +3,8 @@
 This python command line utility accepts text files and outputs basic statistics on the
 frequency of a given word in them. It requires tabulate to format its output and Pytest
 to run the test suite. It is case insensitive and supports searching for phrases when
-quotation marks are used.
+quotation marks are used. By default it reads from the `example_data` directory, but
+supports any directory.
 
 Given more time, the following additional features could be implemented:
 
