@@ -17,3 +17,10 @@ Given more time, the following additional features could be implemented:
 3.  Search all words by default and rank them by order of frequency. The current
     implementation might have to be rewritten since reads the file again every time it
     searches for a new word.
+4.  Create a package that can be installed by a package manager so that the utility can
+    be used anywhere easily from the command line and updates can be issued.
+5.  Run on multiple directories at the same time.
+6.  Customise the amount of example sentences shown with a command line argument.
+7.  The current implementation is not memory efficient on large files because it reads
+    the entire file into memory before parsing it. This could be improved, but would
+    make the solution more complicated.

@@ -5,9 +5,7 @@ import re
 def stats_for_file(file, query):
     pattern = f"(?<=\s){re.escape(query)}(?![a-z])"
     regex = re.compile(pattern, flags=re.IGNORECASE)
-    script_dir = os.path.dirname(__file__)
-    abs_file_path = os.path.join(script_dir, file)
-    with open(abs_file_path) as f:
+    with open(file) as f:
         lines = f.read()
         results = regex.findall(lines)
         matches = len(results)
@@ -20,16 +18,25 @@ def stats_for_file(file, query):
         return {"matches": matches, "examples": examples}
 
 
-def get_stats(query):
+def get_stats(query, source="data/"):
     count = 0
     examples = []
     in_documents = []
-    for i in range(1, 7):
-        document_name = f"doc{i}.txt"
-        document_path = f"data/{document_name}"
-        stats = stats_for_file(document_path, query)
+    script_dir = os.path.dirname(__file__)
+    abs_source_path = os.path.join(script_dir, source)
+    for filename in os.listdir(abs_source_path):
+        abs_filename = os.path.join(abs_source_path, filename)
+        stats = stats_for_file(abs_filename, query)
         if stats["matches"] > 0:
             count += stats["matches"]
             examples += stats["examples"]
-            in_documents.append(document_name)
+            in_documents.append(filename)
     return {"count": count, "in_documents": in_documents, "examples": examples}
+
+
+def get_all_stats(queries, source):
+    for query in queries:
+        stats = get_stats(query, source)
+        print(
+            f"Word or Phrase (Total Occurrences): {query}({stats['count']}), Documents: {stats['in_documents']}, Sentences containing the word: {stats['examples'][0]}"
+        )
