@@ -25,6 +25,8 @@ def get_stats(query, source="data/"):
     script_dir = os.path.dirname(__file__)
     abs_source_path = os.path.join(script_dir, source)
     for filename in os.listdir(abs_source_path):
+        if filename[4:] != ".txt":
+            continue
         abs_filename = os.path.join(abs_source_path, filename)
         stats = stats_for_file(abs_filename, query)
         if stats["matches"] > 0:

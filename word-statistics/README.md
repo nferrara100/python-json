@@ -26,3 +26,5 @@ Given more time, the following additional features could be implemented:
     make the solution more complicated.
 8.  Outputting to a .txt file, a .rtf file to allow formatting such as bold words, or a
     webpage via HTML to allow interactive results.
+9.  Support searching file formats other than .txt.
+10. Support searching directories recursively.
