@@ -3,14 +3,19 @@
 Example usage (on unix systems):
 
 ```bash
+./index.py # Shows most common long words from the example data directory.
+
 ./index.py path/to/my/directory --phrase All the words and "phrases that I like"
+
+./index.py --help # For more options.
 ```
 
 This python command line utility accepts text files and outputs basic statistics on the
-frequency of a given word or phrase in them. It requires rich to format its output and
-Pytest to run the test suite. It is case insensitive and supports searching for phrases
-when quotation marks are used. By default it reads from the `example_data` directory,
-but supports any directory.
+frequency of a given word or phrase in them. If no word or phrase is provided it
+defaults to the most common long words. It requires rich to format its output and Pytest
+to run the test suite. It is case insensitive and supports searching for phrases when
+quotation marks are used. By default it reads from the `example_data` directory, but
+supports any directory.
 
 Given more time, the following additional features could be implemented:
 
@@ -41,3 +46,6 @@ Given more time, the following additional features could be implemented:
     number has been found.
 12. Use MyPy to make function returns clearer.
 13. Add highlighting of queries in example sentences.
+14. If searching for particular words is not required merging the counting and
+    calculating functions would be computationally more expedient, but the current
+    approach is more nimble if future requirements are not perfectly known.
