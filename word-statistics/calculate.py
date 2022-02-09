@@ -31,8 +31,10 @@ def stats_for_file(file, query):
 # Start calculation for word or phrase here. Find all relevant files and then call
 # call helper for each. Then return data from the helper in a useful format.
 def get_stats(query, source=None):
+    # If no source is provided locate the example data relative to this file.
     if source is None:
-        source = ["example_data/"]
+        script_dir = os.path.dirname(__file__)
+        source = [os.path.join(script_dir, "example_data/")]
     count = 0
     examples = []
     locations = []
