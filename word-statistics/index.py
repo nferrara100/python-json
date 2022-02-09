@@ -56,7 +56,9 @@ if __name__ == "__main__":
         min_length = args.min_length[0]
         phrases = get_common_words(args.source, amount, min_length)
         console.print(
-            f"Printing {amount} most common words at least {min_length} characters long. To specify particular words or phrases use the --phrase flag."
+            f"Printing {amount} most common words at least {min_length} characters",
+            "long. To specify particular phrases use [yellow]--phrases[/yellow].",
+            "Check [yellow]--help[/yellow] for more information.",
         )
 
     print_stats(console, phrases, args.source)
