@@ -38,10 +38,9 @@ def get_stats(query, source=None):
     locations = []
 
     # Find all the files in the source folder.
-    script_dir = os.path.dirname(__file__)
     # Loop through source if there are multiple source directories.
     for dir in source:
-        abs_dir_path = os.path.join(script_dir, dir)
+        abs_dir_path = os.path.abspath(dir)
         try:
             for filename in os.listdir(abs_dir_path):
                 # Don't examine files that are not text files so all data is the same.
