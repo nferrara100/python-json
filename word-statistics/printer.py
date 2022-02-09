@@ -1,5 +1,6 @@
 from calculate import get_query_stats
-from tabulate import tabulate
+from rich.console import Console
+from rich.table import Table
 
 
 # Formats stats as required for display.
@@ -11,36 +12,20 @@ def get_formatted_stats(stats, query):
         shown_examples = num_examples
     examples = "\n\n".join(stats["examples"][:shown_examples])
     # return as list instead of dict.
-    return [f"{query}({stats['count']})", ", ".join(stats["locations"]), examples]
+    return (f"{query}({stats['count']})", ", ".join(stats["locations"]), examples)
 
 
-# Returns two dimensional lists representing the grid of our desired output.
-def get_stat_grid(queries, source):
-    # Start with headers.
-    results = [
-        [
-            "Word or Phrase\n(Total Occurrences):",
-            "Documents:",
-            "Sentences containing the word:",
-        ],
-        ["-", "-", "-"],
-    ]
-
+# Gets output from helper and prints to standard out.
+def print_stats(queries, source):
+    console = Console()
+    table = Table(show_header=True, show_lines=True, header_style="bold green")
+    table.add_column("Word or Phrase\n(Total Occurrences)", max_width=30)
+    table.add_column("Documents", max_width=15)
+    table.add_column("Sentences containing the word or phrase", justify="right")
     # Do this for every word of phrase searched and create its own row.
     for query in queries:
         # Do the calculations
         stats = get_query_stats(query, source)
         formatted_stats = get_formatted_stats(stats, query)
-        results.append(formatted_stats)
-        results.append(["-", "-", "-"])
-    return results
-
-
-# Gets output from helper and prints to standard out.
-def print_stats(queries, source):
-    stat_grid = get_stat_grid(queries, source)
-    output = tabulate(
-        stat_grid,
-        tablefmt="plain",
-    )
-    print(output)
+        table.add_row(*formatted_stats)
+    console.print(table)

@@ -7,10 +7,10 @@ Example usage (on unix systems):
 ```
 
 This python command line utility accepts text files and outputs basic statistics on the
-frequency of a given word or phrase in them. It requires tabulate to format its output
-and Pytest to run the test suite. It is case insensitive and supports searching for
-phrases when quotation marks are used. By default it reads from the `example_data`
-directory, but supports any directory.
+frequency of a given word or phrase in them. It requires rich to format its output and
+Pytest to run the test suite. It is case insensitive and supports searching for phrases
+when quotation marks are used. By default it reads from the `example_data` directory,
+but supports any directory.
 
 Given more time, the following additional features could be implemented:
 
