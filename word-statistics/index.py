@@ -10,6 +10,19 @@ from calculate import get_stats
 from tabulate import tabulate
 
 
+# Formats stats as required for display.
+def get_formatted_stats(query, source=None):
+    stats = get_stats(query, source)
+    # Never show more than three examples if there are more.
+    num_examples = len(stats["examples"])
+    shown_examples = 3
+    if num_examples < 3:
+        shown_examples = num_examples
+    examples = "\n\n".join(stats["examples"][:shown_examples])
+    # return as list instead of dict.
+    return [f"{query}({stats['count']})", ", ".join(stats["locations"]), examples]
+
+
 # Returns two dimensional lists representing the grid of our desired output.
 def get_all_stats(queries, source):
     # Start with headers.
@@ -25,18 +38,8 @@ def get_all_stats(queries, source):
     # Do this for every word of phrase searched and create its own row.
     for query in queries:
         # Do the calculations
-        stats = get_stats(query, source)
-        # Never show more than three examples if there are more.
-        num_examples = len(stats["examples"])
-        shown_examples = 3
-        if num_examples < 3:
-            shown_examples = num_examples
-        examples = "\n\n".join(stats["examples"][:shown_examples])
-        # Add to output.
-        results.append(
-            [f"{query}({stats['count']})", ", ".join(stats["locations"]), examples]
-        )
-        # Add something to separate lines.
+        formatted_stats = get_formatted_stats(query, source)
+        results.append(formatted_stats)
         results.append(["-", "-", "-"])
     return results
 
