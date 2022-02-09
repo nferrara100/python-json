@@ -2,7 +2,8 @@
 
 This python command line utility accepts text files and outputs basic statistics on the
 frequency of a given word in them. It requires tabulate to format its output and Pytest
-to run the test suite.
+to run the test suite. It is case insensitive and supports searching for phrases when
+quotation marks are used.
 
 Given more time, the following additional features could be implemented:
 
