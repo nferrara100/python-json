@@ -13,7 +13,7 @@ def get_formatted_stats(stats, query):
     # return as list instead of dict.
     return (
         f"[bold red]{query.capitalize()}[/bold red] ({stats['count']})",
-        ", ".join(stats["locations"]),
+        "\n".join(stats["locations"]),
         examples,
     )
 
