@@ -40,3 +40,4 @@ Given more time, the following additional features could be implemented:
 11. Optimize example searching by not searching for more examples once the required
     number has been found.
 12. Use MyPy to make function returns clearer.
+13. Add highlighting of queries in example sentences.
