@@ -12,7 +12,7 @@ def get_formatted_stats(stats, query):
     examples = "\n\n".join(stats["examples"][:shown_examples])
     # return as list instead of dict.
     return (
-        f"[bold red]{query}[/bold red] ({stats['count']})",
+        f"[bold red]{query.capitalize()}[/bold red] ({stats['count']})",
         ", ".join(stats["locations"]),
         examples,
     )
