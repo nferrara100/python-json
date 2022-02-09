@@ -27,7 +27,7 @@ def print_stats(console, queries, source):
     table = Table(show_header=True, show_lines=True, header_style="bold green")
     table.add_column("Word or Phrase\n(Total Occurrences)", max_width=30)
     table.add_column("Documents", max_width=15)
-    table.add_column("Sentences containing the word or phrase", justify="right")
+    table.add_column("Sentences containing the word or phrase", justify="full")
     # Do this for every word of phrase searched and create its own row.
     for query in queries:
         # Do the calculations
