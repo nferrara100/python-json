@@ -42,13 +42,12 @@ def get_all_stats(queries, source):
 
 # Gets output from helper and prints to standard out.
 def print_stats(queries, source):
-    print(
-        tabulate(
-            get_all_stats(queries, source),
-            headers="firstrow",
-            tablefmt="plain",
-        )
+    stats = get_all_stats(queries, source)
+    output = tabulate(
+        stats,
+        tablefmt="plain",
     )
+    print(output)
 
 
 # Run this if not being imported. Accepts input from the command line and calls helper.
