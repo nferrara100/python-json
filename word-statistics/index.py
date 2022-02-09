@@ -6,13 +6,12 @@
 
 import argparse
 
-from calculate import get_stats
+from calculate import get_query_stats
 from tabulate import tabulate
 
 
 # Formats stats as required for display.
-def get_formatted_stats(query, source=None):
-    stats = get_stats(query, source)
+def get_formatted_stats(stats, query):
     # Never show more than three examples if there are more.
     num_examples = len(stats["examples"])
     shown_examples = 3
@@ -24,7 +23,7 @@ def get_formatted_stats(query, source=None):
 
 
 # Returns two dimensional lists representing the grid of our desired output.
-def get_all_stats(queries, source):
+def get_stat_grid(queries, source):
     # Start with headers.
     results = [
         [
@@ -38,7 +37,8 @@ def get_all_stats(queries, source):
     # Do this for every word of phrase searched and create its own row.
     for query in queries:
         # Do the calculations
-        formatted_stats = get_formatted_stats(query, source)
+        stats = get_query_stats(query, source)
+        formatted_stats = get_formatted_stats(stats, query)
         results.append(formatted_stats)
         results.append(["-", "-", "-"])
     return results
@@ -46,9 +46,9 @@ def get_all_stats(queries, source):
 
 # Gets output from helper and prints to standard out.
 def print_stats(queries, source):
-    stats = get_all_stats(queries, source)
+    stat_grid = get_stat_grid(queries, source)
     output = tabulate(
-        stats,
+        stat_grid,
         tablefmt="plain",
     )
     print(output)
