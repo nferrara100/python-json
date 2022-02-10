@@ -1,4 +1,4 @@
-# Text stats command line utility
+# Prevalical: Easily observe the prevalence of words or phrases in text
 
 Example usage (on unix systems):
 
@@ -10,12 +10,11 @@ Example usage (on unix systems):
 ./index.py --help # For more options.
 ```
 
-This python command line utility accepts text files and outputs basic statistics on the
-frequency of a given word or phrase in them. If no word or phrase is provided it
-defaults to the most common long words. It requires rich to format its output and Pytest
-to run the test suite. It is case insensitive and supports searching for phrases when
-quotation marks are used. By default it reads from the `example_data` directory, but
-supports any directory.
+Prevalical accepts text files and outputs basic statistics on the frequency of a given
+word or phrase in them. If no word or phrase is provided it defaults to the most common
+long words. It requires rich to format its output and Pytest to run the test suite. It
+is case insensitive and supports searching for phrases when quotation marks are used. By
+default it reads from the `example_data` directory, but supports any directory.
 
 Given more time, the following additional features could be implemented:
 
