@@ -1,4 +1,4 @@
-# Prevalical: Easily observe the prevalence of words or phrases in text
+# Prevalical: The command line oracle of textual prevalence
 
 Example usage (on unix systems):
 
@@ -48,3 +48,4 @@ Given more time, the following additional features could be implemented:
 14. If searching for particular words is not required merging the counting and
     calculating functions would be computationally more expedient, but the current
     approach is more nimble if future requirements are not perfectly known.
+15. Use Pandas to learn more crazy statistics and include plots
