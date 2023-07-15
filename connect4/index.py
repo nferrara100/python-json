@@ -12,6 +12,7 @@ def check_grid(grid, x, y):
             return cell
         last = cell
 
+
 def check_grid_vert(grid, x, y):
     last = 0
     streak = 0
@@ -27,6 +28,7 @@ def check_grid_vert(grid, x, y):
             return cell
         last = cell
 
+
 def check_grid_di(grid, x, y):
     last = 0
     streak = 0
@@ -34,7 +36,7 @@ def check_grid_di(grid, x, y):
     di_list = [grid[y, x]]
     for inc in range(0, 6):
         try:
-            di_list.append(grid[x+inc, y+inc])
+            di_list.append(grid[x + inc, y + inc])
         except Exception:
             break
 

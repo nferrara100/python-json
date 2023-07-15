@@ -1,5 +1,5 @@
-from parse import Parser
 import pytest
+from parse import Parser
 
 
 def test_parse_simple_bold():

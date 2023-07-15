@@ -13,6 +13,7 @@ grid[3][9] = True
 grid[5][5] = True
 grid[5][7] = True
 
+
 # Refresh grid
 def tick():
     living = 0

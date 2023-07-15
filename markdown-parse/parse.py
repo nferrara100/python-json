@@ -2,9 +2,9 @@
 # that will be converted to <del>something</del>
 
 import re
-from typing import List
 from collections import deque
 from dataclasses import dataclass
+from typing import List
 
 # @dataclass
 # class Match:
