@@ -28,8 +28,8 @@ Given more time, the following additional features could be implemented:
 2.  Increase the size of the test suite to include more edge cases and include the
     command line entry point.
 3.  Search all words by default and rank them by order of frequency. The current
-    implementation might have to be rewritten since reads the file again every time it
-    searches for a new word.
+    implementation might have to be rewritten since it reads the file again every time
+    it searches for a new word.
 4.  Create a package that can be installed by a package manager so that the utility can
     be used anywhere easily from the command line and updates can be issued.
 5.  Customise the amount of example sentences shown with a command line argument.
