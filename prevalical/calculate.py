@@ -8,7 +8,7 @@ from files import get_file_paths
 def stats_for_file(file, query):
     # Escape to avoid regex collisions
     escaped_query_string = re.escape(query)
-    # Search for the query string. It must start and end with a word seperator. For
+    # Search for the query string. It must start and end with a word separator. For
     # example: Search for `me`: Me, myself, and I (match); Something (not a match).
     pattern = r"(?<=\b)(" + escaped_query_string + r")(?=\b)"
     regex = re.compile(pattern, flags=re.IGNORECASE)
